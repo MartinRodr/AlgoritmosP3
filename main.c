@@ -111,7 +111,7 @@ void ord_rapida(int v[], int n, int umbral) {
 
 void contarTiempo(int k, double confianza, int inicializacion) {
 	int conf, *v, n, umbral = 1;
-	double ta, tb, t, t1, t2;
+	double ta, tb, t = 0.0, t1, t2;
 	for (int j = 0; j < 3; j++) {
 		switch(inicializacion) {
 			case 0: 
