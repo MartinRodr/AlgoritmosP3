@@ -55,7 +55,7 @@ void swap(int v[], int pos1, int pos2) {
 	v[pos2] = v[pos1]
 }
 
-void Median3 (int v[], int i, int j) {
+void Mediana3 (int v[], int i, int j) {
 	int k = (i + j) / 2;
 	if (v[k] > v[j]) {
 		swap(v, k, j);
@@ -66,10 +66,10 @@ void Median3 (int v[], int i, int j) {
 	}
 }
 
-void OrdenarAux (int v[], int left, int right, int THRESHOLD) {
+void ordenar_aux(int v[], int left, int right, int umbral) {
 	int pivote, i, j;
-	if (left + THRESHOLD <= right) {
-		Median3(v, left, right);
+	if (left + umbral <= right) {
+		Mediana3(v, left, right);
 		pivote = v[left];
 		i = left;
 		j = right;
@@ -85,7 +85,7 @@ void OrdenarAux (int v[], int left, int right, int THRESHOLD) {
 	}
 }
 
-void InsertionSort(int v[], int n) {
+void ord_ins(int v[], int n) {
 	int x, j;
 	for (int i = 1; i < n; i++){
 		x = v[i];
@@ -98,10 +98,10 @@ void InsertionSort(int v[], int n) {
 	}
 }
 
-void OrdenacionRapida(int v[], int n, int THRESHOLD) {
-	OrdenarAux(v, 0, n - 1);
-	if (THRESHOLD > 1) {
-		InsertionSort(v, n);
+void ord_rapida(int v[], int n, int umbral) {
+	ordenar_aux(v, 0, n - 1, umbral);
+	if (umbral > 1) {
+		ord_ins(v, n);
 	}
 }
 
@@ -160,13 +160,13 @@ void OrdenacionRapida(int v[], int n, int THRESHOLD) {
 }*/
 
 void test_th1(){
-	int THRESHOLD = 1, n = 20;
+	int umbral = 1, n = 20;
 	int v[n];
 	aleatorio(v, n);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
-	OrdenacionRapida(v, n, THRESHOLD);
+	ord_rapida(v, n, umbral);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
@@ -174,7 +174,7 @@ void test_th1(){
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
-	OrdenacionRapida(v, n, THRESHOLD);
+	ord_rapida(v, n, umbral);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
@@ -182,11 +182,13 @@ void test_th1(){
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
-	OrdenacionRapida(v, n, THRESHOLD);
+	ord_rapida(v, n, umbral);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
 }
+
+// n * log n
 
 int main(void){
 	//int k = 1000, n = 500, m = 11, exp = 2;
