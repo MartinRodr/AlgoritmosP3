@@ -109,59 +109,77 @@ void ord_rapida(int v[], int n, int umbral) {
 	}
 }
 
-/*void contarTiempoShellCiura(int n, int k, int m, int exp, double confianza){
-	int conf, *v, *incr, mm;
+void contarTiempo(int k, double confianza, int inicializacion) {
+	int conf, *v, n, umbral = 1;
 	double ta, tb, t, t1, t2;
-	printf("Algoritmo Shell: Ciura\n");
-	printf("%10s%18s%18s%18s%18s\n", 
-		"n", "t (n)", "t (n) / n", "t (n) / n^1.11", "t (n) / n*log^2(n)");
-	for (int i = 0; i < m; i++) {
-		conf = 0;
-		v = malloc(n * sizeof(int));
-		if (!v){
-			perror("malloc");
-			exit(EXIT_FAILURE);
-		}
-		incr = ciura(n, &mm);
-		aleatorio(v, n);
-		ta = microsegundos();
-		ord_shell(v, n, incr, mm);
-		tb = microsegundos();
-		t = tb - ta;
-		if (t < confianza){
+	for (int j = 0; j < 3; j++) {
+		switch(inicializacion) {
+			case 0: 
+				printf("Algoritmo desordenado con umbral %d\n", umbral); break;
+			case 1: 
+				printf("Algoritmo ascendente con umbral %d\n", umbral); break;
+			case 2: 
+				printf("Algoritmo descendente con umbral %d\n", umbral); break;
+			default: break; }
+		printf("%10s%18s%18s%18s%18s\n", 
+			"n", "t (n)", "t (n) / n", "t (n) / n^1.11", "t (n) / n*log^2(n)");
+		for (n = 500 ; n <= 256000 && t < 500000; n=n*2) {
+			conf = 0;
+			v = malloc(n * sizeof(int));
+			if (!v) {
+				perror("malloc");
+				exit(EXIT_FAILURE); }
+			switch(inicializacion) {
+				case 0: aleatorio(v, n); break;
+				case 1: inicializar_ascendente(v, n); break;
+				case 2: inicializar_descendente(v, n); break;
+				default: break; }
 			ta = microsegundos();
-			for (int i = 0; i < k; i++){
-				aleatorio(v, n);
-				ord_shell(v, n, incr, mm);
-			}
+			ord_rapida(v, n, umbral);
 			tb = microsegundos();
-			t1 = tb - ta;
-			ta = microsegundos();
-			for (int j = 0; j < k; j++){
-				aleatorio(v, n);
+			t = tb - ta;
+			if (t < confianza){
+				ta = microsegundos();
+				for (int i = 0; i < k; i++){
+					switch(inicializacion) {
+						case 0: aleatorio(v, n); break;
+						case 1: inicializar_ascendente(v, n); break;
+						case 2: inicializar_descendente(v, n); break;
+						default: break; }
+					ord_rapida(v, n, umbral);
+				}
+				tb = microsegundos();
+				t1 = tb - ta;
+				ta = microsegundos();
+				for (int j = 0; j < k; j++){
+					switch(inicializacion) {
+						case 0: aleatorio(v, n); break;
+						case 1: inicializar_ascendente(v, n); break;
+						case 2: inicializar_descendente(v, n); break;
+						default: break; }
+				}
+				tb = microsegundos();
+				t2 = tb - ta;
+				t = (t1 - t2) / k;
+				conf = 1;
 			}
-			tb = microsegundos();
-			t2 = tb - ta;
-			t = (t1 - t2) / k;
-			conf = 1;
-		}
-		if (conf == 1){
-			printf("(*)");
-			printf("%7d", n);
+			if (conf == 1){
+				printf("(*)");
+				printf("%7d", n);
 
-		} else {
-			printf("%10d", n);
+			} else {
+				printf("%10d", n);
+			}
+			printf("%18lf", t);
+			printf("%18lf", t / pow((double)n, 1));
+			printf("%18.7lf", t / pow((double)n, 1.11));
+			printf("%18lf", t / ((double)n * pow(log(n), 2)));
+			printf("\n");
+			free(v);
 		}
-		printf("%18lf", t);
-		printf("%18lf", t / pow((double)n, 1));
-		printf("%18.7lf", t / pow((double)n, 1.11));
-		printf("%18lf", t / ((double)n * pow(log(n), 2)));
-		printf("\n");
-		free(v);
-		free(incr);
-		n *=exp;
+		umbral *= 10;
 	}
-}*/
+}
 
 void test_th1(){
 	int umbral = 1, n = 20;
@@ -201,9 +219,13 @@ void test_th1(){
 // n * log n
 
 int main(void){
-	//int k = 1000, n = 500, m = 11, exp = 2;
-	//double confianza = 500.00;
+	int k = 1000;
+	double confianza = 500.00;
+	// inicializacion = 0 -- Desordenado
+	// inicializacion = 1 -- Ascendente
+	// inicializacion = 2 -- Descendente
 
+	contarTiempo(k, confianza, 0);
 	test_th1();
 	return 0;
 }
