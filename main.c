@@ -52,7 +52,7 @@ bool ordenado(int v[], int n){
 void swap(int v[], int pos1, int pos2) {
 	int tmp = v[pos1];
 	v[pos1] = v[pos2];
-	v[pos2] = v[pos1]
+	v[pos2] = tmp;
 }
 
 void Mediana3 (int v[], int i, int j) {
@@ -60,7 +60,7 @@ void Mediana3 (int v[], int i, int j) {
 	if (v[k] > v[j]) {
 		swap(v, k, j);
 	} else if (v[k] > v[i]) {
-		swap(v, k, i]);
+		swap(v, k, i);
 	} else {
 		swap(v, i, j);
 	}
@@ -73,15 +73,19 @@ void ordenar_aux(int v[], int left, int right, int umbral) {
 		pivote = v[left];
 		i = left;
 		j = right;
-		while (j <= i) {
-			for (i; v[i] >= pivote; i++);
-			for (j; v[j] <= pivote; j--);
+		while (j >= i) {
+			while (v[i] <= pivote) {
+				i++;
+			}
+			while (v[j] >= pivote) {
+				j--;
+			}
 			swap(v, i, j);
 		}
 		swap(v, i, j);
 		swap(v, left, j);
-		OrdenarAux(v, left, j - 1);
-		OrdenarAux(v, j + 1, right);
+		ordenar_aux(v, left, j - 1, umbral);
+		ordenar_aux(v, j + 1, right, umbral);
 	}
 }
 
@@ -166,26 +170,32 @@ void test_th1(){
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
+	printf("\n");
 	ord_rapida(v, n, umbral);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
+	printf("\n\n");
 	inicializar_ascendente(v, n);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
+	printf("\n");
 	ord_rapida(v, n, umbral);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
+	printf("\n\n");
 	inicializar_descendente(v, n);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
+	printf("\n");
 	ord_rapida(v, n, umbral);
 	for(int i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
+	printf("\n\n");
 }
 
 // n * log n
