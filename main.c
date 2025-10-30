@@ -124,7 +124,7 @@ void ord_rapida(int v[], int n, int umbral) {
 
 void contarTiempo(int k, double confianza, int inicializacion) {
 	int conf, *v, n, umbral;
-	double ta, tb, t = 0.0, t1, t2, t_prev;
+	double ta, tb, t = 0.0, t1, t2, t_prev = 0.0;
 	const char *nombres[] = {
 		"Algoritmo desordenado",
 		"Algoritmo ascendente",
@@ -162,6 +162,7 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 				conf = 1;
 			}
 			t_prev = t;
+			printf("\n%lf\n", t_prev);
 			if (conf == 1){
 				printf("(*)%7d", n);
 			} else {
