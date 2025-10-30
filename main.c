@@ -31,13 +31,15 @@ void aleatorio(int v[], int n) {
 }
 
 void inicializar_ascendente(int v[], int n) {
-	for (int i = 0; i < n; i++) {
+	int i;
+	for (i = 0; i < n; i++) {
 		v[i] = i;
 	}
 }
 
 void inicializar_descendente(int v[], int n) {
-	for (int i = 0; i < n; i++) {
+	int i;
+	for (i = 0; i < n; i++) {
 		v[i] = n - i;
 	}
 }
@@ -59,13 +61,15 @@ void inicializar_vector(int v[], int n, int inicializacion) {
 }
 
 void swap(int v[], int pos1, int pos2) {
-	int tmp = v[pos1];
+	int tmp;
+	tmp = v[pos1];
 	v[pos1] = v[pos2];
 	v[pos2] = tmp;
 }
 
 void Mediana3 (int v[], int i, int j) {
-	int k = (i + j) / 2;
+	int k;
+	k = (i + j) / 2;
 	if (v[k] > v[j]) {
 		swap(v, k, j);
 	} 
@@ -103,8 +107,8 @@ void ordenar_aux(int v[], int left, int right, int umbral) {
 }
 
 void ord_ins(int v[], int n) {
-	int x, j;
-	for (int i = 1; i < n; i++){
+	int x, j, i;
+	for (i = 1; i < n; i++){
 		x = v[i];
 		j = i - 1;
 		while (j >= 0 && v[j] >= x){
@@ -179,35 +183,35 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 }
 
 void test_th1(){
-	int umbral = 1, n = 20;
+	int umbral = 1, n = 20, i;
 	int v[n];
 	aleatorio(v, n);
-	for(int i = 0; i < n; i++){
+	for(i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
 	printf("\n");
 	ord_rapida(v, n, umbral);
-	for(int i = 0; i < n; i++){
+	for(i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
 	printf("\n\n");
 	inicializar_ascendente(v, n);
-	for(int i = 0; i < n; i++){
+	for(i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
 	printf("\n");
 	ord_rapida(v, n, umbral);
-	for(int i = 0; i < n; i++){
+	for(i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
 	printf("\n\n");
 	inicializar_descendente(v, n);
-	for(int i = 0; i < n; i++){
+	for(i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
 	printf("\n");
 	ord_rapida(v, n, umbral);
-	for(int i = 0; i < n; i++){
+	for(i = 0; i < n; i++){
 		printf("%d  ", v[i]);
 	}
 	printf("\n\n");
