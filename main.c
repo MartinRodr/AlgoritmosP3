@@ -24,7 +24,7 @@ void inicializar_semilla() {
 }
 
 void aleatorio(int v[], int n) {
-	int i, m=2*n+1;
+	int i, m =2*n+1;
 	for (i=0; i < n; i++)
 		v[i] = (rand() % m) - n;
 	/* se generan números pseudoaleatorio entre -n y +n */
@@ -49,6 +49,15 @@ bool ordenado(int v[], int n){
 	return true;
 }
 
+void inicializar_vector(int v[], int n, int inicializacion) {
+	switch(inicializacion) {
+		case 0: aleatorio(v, n); break;
+		case 1: inicializar_ascendente(v, n); break;
+		case 2: inicializar_descendente(v, n); break;
+		default: break;
+	}
+}
+
 void swap(int v[], int pos1, int pos2) {
 	int tmp = v[pos1];
 	v[pos1] = v[pos2];
@@ -59,9 +68,11 @@ void Mediana3 (int v[], int i, int j) {
 	int k = (i + j) / 2;
 	if (v[k] > v[j]) {
 		swap(v, k, j);
-	} else if (v[k] > v[i]) {
+	} 
+	if (v[k] > v[i]) {
 		swap(v, k, i);
-	} else {
+	} 
+	if (v[i] > v[j]) {
 		swap(v, i, j);
 	}
 }
@@ -73,15 +84,17 @@ void ordenar_aux(int v[], int left, int right, int umbral) {
 		pivote = v[left];
 		i = left;
 		j = right;
-		while (j >= i) {
-			while (v[i] <= pivote) {
+		do {
+			i++;
+			while (v[i] < pivote) {
 				i++;
 			}
-			while (v[j] >= pivote) {
+			j--;
+			while (v[j] > pivote) {
 				j--;
 			}
 			swap(v, i, j);
-		}
+		} while (i < j);
 		swap(v, i, j);
 		swap(v, left, j);
 		ordenar_aux(v, left, j - 1, umbral);
@@ -110,63 +123,47 @@ void ord_rapida(int v[], int n, int umbral) {
 }
 
 void contarTiempo(int k, double confianza, int inicializacion) {
-	int conf, *v, n, umbral = 1;
-	double ta, tb, t = 0.0, t1, t2;
-	for (int j = 0; j < 3; j++) {
-		switch(inicializacion) {
-			case 0: 
-				printf("Algoritmo desordenado con umbral %d\n", umbral); break;
-			case 1: 
-				printf("Algoritmo ascendente con umbral %d\n", umbral); break;
-			case 2: 
-				printf("Algoritmo descendente con umbral %d\n", umbral); break;
-			default: break; }
+	int conf, *v, n, umbral;
+	double ta, tb, t = 0.0, t1, t2, t_prev;
+	const char *nombres[] = {
+		"Algoritmo desordenado",
+		"Algoritmo ascendente",
+		"Algoritmo descendente" };
+	for (umbral = 1; umbral <= 100; umbral = umbral * 10) {
+		printf("Algoritmos %s con umbral %d\n", nombres[inicializacion], umbral);
 		printf("%10s%18s%18s%18s%18s\n", 
 			"n", "t (n)", "t (n) / n", "t (n) / n^1.11", "t (n) / n*log^2(n)");
-		for (n = 500 ; n <= 256000 && t < 500000; n=n*2) {
+		for (n = 500 ; n <= 256000 && t_prev < 500000; n = n * 2) {
 			conf = 0;
 			v = malloc(n * sizeof(int));
 			if (!v) {
 				perror("malloc");
 				exit(EXIT_FAILURE); }
-			switch(inicializacion) {
-				case 0: aleatorio(v, n); break;
-				case 1: inicializar_ascendente(v, n); break;
-				case 2: inicializar_descendente(v, n); break;
-				default: break; }
+			inicializar_vector(v, n, inicializacion);
 			ta = microsegundos();
 			ord_rapida(v, n, umbral);
 			tb = microsegundos();
 			t = tb - ta;
-			if (t < confianza){
+			if (t < confianza) {
 				ta = microsegundos();
-				for (int i = 0; i < k; i++){
-					switch(inicializacion) {
-						case 0: aleatorio(v, n); break;
-						case 1: inicializar_ascendente(v, n); break;
-						case 2: inicializar_descendente(v, n); break;
-						default: break; }
+				for (int i = 0; i < k; i++) {
+					inicializar_vector(v, n, inicializacion);
 					ord_rapida(v, n, umbral);
 				}
 				tb = microsegundos();
 				t1 = tb - ta;
 				ta = microsegundos();
-				for (int j = 0; j < k; j++){
-					switch(inicializacion) {
-						case 0: aleatorio(v, n); break;
-						case 1: inicializar_ascendente(v, n); break;
-						case 2: inicializar_descendente(v, n); break;
-						default: break; }
+				for (int j = 0; j < k; j++) {
+					inicializar_vector(v, n, inicializacion);
 				}
 				tb = microsegundos();
 				t2 = tb - ta;
 				t = (t1 - t2) / k;
 				conf = 1;
 			}
+			t_prev = t;
 			if (conf == 1){
-				printf("(*)");
-				printf("%7d", n);
-
+				printf("(*)%7d", n);
 			} else {
 				printf("%10d", n);
 			}
@@ -177,7 +174,6 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 			printf("\n");
 			free(v);
 		}
-		umbral *= 10;
 	}
 }
 
@@ -225,7 +221,9 @@ int main(void){
 	// inicializacion = 1 -- Ascendente
 	// inicializacion = 2 -- Descendente
 
-	contarTiempo(k, confianza, 0);
 	test_th1();
+	contarTiempo(k, confianza, 0);
+	contarTiempo(k, confianza, 1);
+	contarTiempo(k, confianza, 2);
 	return 0;
 }
