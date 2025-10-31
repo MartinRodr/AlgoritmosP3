@@ -45,7 +45,8 @@ void inicializar_descendente(int v[], int n) {
 }
 
 bool ordenado(int v[], int n){
-	for (int i = 1; i < n; i++){
+	int i
+	for (i = 1; i < n; i++){
 		if (v[i - 1] > v[i]) { return false; }
 	}
 	return true;
