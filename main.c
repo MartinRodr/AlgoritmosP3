@@ -45,7 +45,7 @@ void inicializar_descendente(int v[], int n) {
 }
 
 bool ordenado(int v[], int n){
-	int i
+	int i;
 	for (i = 1; i < n; i++){
 		if (v[i - 1] > v[i]) { return false; }
 	}
@@ -90,14 +90,12 @@ void ordenar_aux(int v[], int left, int right, int umbral) {
 		i = left;
 		j = right;
 		do {
-			i++;
-			while (v[i] < pivote) {
-				i++;
-			}
-			j--;
-			while (v[j] > pivote) {
-				j--;
-			}
+			do {
+                i++;
+            } while (v[i] < pivote);
+            do {
+                j--;
+            } while (v[j] > pivote);
 			swap(v, i, j);
 		} while (i < j);
 		swap(v, i, j);
@@ -128,17 +126,17 @@ void ord_rapida(int v[], int n, int umbral) {
 }
 
 void contarTiempo(int k, double confianza, int inicializacion) {
-	int conf, *v, n, umbral;
-	double ta, tb, t = 0.0, t1, t2, t_prev = 0.0;
-	const char *nombres[] = {
+	int conf, *v, n, umbral, i, j;
+	double ta, tb, t = 0.0, t1, t2;
+	const char *inic[] = {
 		"Algoritmo desordenado",
 		"Algoritmo ascendente",
 		"Algoritmo descendente" };
-	for (umbral = 1; umbral <= 100; umbral = umbral * 10) {
-		printf("Algoritmos %s con umbral %d\n", nombres[inicializacion], umbral);
+	for (umbral = 1; umbral <= 100; umbral *= 10) {
+		printf("Algoritmos %s con umbral %d\n", inic[inicializacion], umbral);
 		printf("%10s%18s%18s%18s%18s\n", 
-			"n", "t (n)", "t (n) / n", "t (n) / n^1.11", "t (n) / n*log^2(n)");
-		for (n = 500 ; n <= 256000 && t_prev < 500000; n = n * 2) {
+			"n", "t (n)", "t (n) / n", "t (n) / n*log(n)", "t (n) / n*log^2(n)");
+		for (n = 500 ; n <= 256000 && t < 500000; n *= 2) {
 			conf = 0;
 			v = malloc(n * sizeof(int));
 			if (!v) {
@@ -151,14 +149,14 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 			t = tb - ta;
 			if (t < confianza) {
 				ta = microsegundos();
-				for (int i = 0; i < k; i++) {
+				for (i = 0; i < k; i++) {
 					inicializar_vector(v, n, inicializacion);
 					ord_rapida(v, n, umbral);
 				}
 				tb = microsegundos();
 				t1 = tb - ta;
 				ta = microsegundos();
-				for (int j = 0; j < k; j++) {
+				for (j = 0; j < k; j++) {
 					inicializar_vector(v, n, inicializacion);
 				}
 				tb = microsegundos();
@@ -166,8 +164,6 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 				t = (t1 - t2) / k;
 				conf = 1;
 			}
-			t_prev = t;
-			printf("\n%lf\n", t_prev);
 			if (conf == 1){
 				printf("(*)%7d", n);
 			} else {
@@ -175,47 +171,35 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 			}
 			printf("%18lf", t);
 			printf("%18lf", t / pow((double)n, 1));
-			printf("%18.7lf", t / pow((double)n, 1.11));
-			printf("%18lf", t / ((double)n * pow(log(n), 2)));
+			printf("%18.7lf", t / pow((double)n * log(n), 1));
+			printf("%18lf", t / ((double)n * 2));
 			printf("\n");
 			free(v);
 		}
 	}
 }
 
-void test_th1(){
-	int umbral = 1, n = 20, i;
+void test_ordenacion() {
+	int umbral = 1, n = 20, i, j;
 	int v[n];
-	aleatorio(v, n);
-	for(i = 0; i < n; i++){
-		printf("%d  ", v[i]);
+	const char *inic[] = {
+		"Algoritmo desordenado",
+		"Algoritmo ascendente",
+		"Algoritmo descendente" };
+	for (i = 0; i < 3; i++) {
+		printf("Algoritmos %s con umbral %d\n", inic[i], umbral);
+		inicializar_vector(v, n, i);
+		for (j = 0; j < n; j++){
+			printf("%d  ", v[j]);
+		}
+		printf("\n");
+		ord_rapida(v, n, umbral);
+		for (j = 0; j < n; j++){
+			printf("%d  ", v[j]);
+		}
+		printf("\n%sORDENADO\n", ordenado(v, n) ? "" : "NO ");
 	}
-	printf("\n");
-	ord_rapida(v, n, umbral);
-	for(i = 0; i < n; i++){
-		printf("%d  ", v[i]);
-	}
-	printf("\n\n");
-	inicializar_ascendente(v, n);
-	for(i = 0; i < n; i++){
-		printf("%d  ", v[i]);
-	}
-	printf("\n");
-	ord_rapida(v, n, umbral);
-	for(i = 0; i < n; i++){
-		printf("%d  ", v[i]);
-	}
-	printf("\n\n");
-	inicializar_descendente(v, n);
-	for(i = 0; i < n; i++){
-		printf("%d  ", v[i]);
-	}
-	printf("\n");
-	ord_rapida(v, n, umbral);
-	for(i = 0; i < n; i++){
-		printf("%d  ", v[i]);
-	}
-	printf("\n\n");
+
 }
 
 // n * log n
@@ -226,8 +210,8 @@ int main(void){
 	// inicializacion = 0 -- Desordenado
 	// inicializacion = 1 -- Ascendente
 	// inicializacion = 2 -- Descendente
-
-	test_th1();
+	inicializar_semilla();
+	test_ordenacion();
 	contarTiempo(k, confianza, 0);
 	contarTiempo(k, confianza, 1);
 	contarTiempo(k, confianza, 2);
