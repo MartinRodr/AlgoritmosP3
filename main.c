@@ -135,7 +135,7 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 	for (umbral = 1; umbral <= 100; umbral *= 10) {
 		printf("Algoritmos %s con umbral %d\n", inic[inicializacion], umbral);
 		printf("%10s%18s%18s%18s%18s\n", 
-			"n", "t (n)", "t (n) / n", "t (n) / n*log(n)", "t (n) / n*log^2(n)");
+			"n", "t (n)", "t (n) / n^2", "t (n) / n*log(n)", "t (n) / n^2.2");
 		for (n = 500 ; n <= 256000 && t < 500000; n *= 2) {
 			conf = 0;
 			v = malloc(n * sizeof(int));
@@ -170,10 +170,11 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 				printf("%10d", n);
 			}
 			printf("%18lf", t);
-			printf("%18lf", t / pow((double)n, 1));
+			printf("%18lf", t / pow((double)n, 2));
 			printf("%18.7lf", t / pow((double)n * log(n), 1));
-			printf("%18lf", t / ((double)n * 2));
+			printf("%18lf", t / pow((double)n, 2.2));
 			printf("\n");
+			printf("%lf %lf %lf\n", pow(n, 2), pow(n * log(n), 1), pow((double)n, 2.2));
 			free(v);
 		}
 	}
