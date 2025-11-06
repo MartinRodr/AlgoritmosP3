@@ -174,7 +174,6 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 			printf("%18.7lf", t / pow((double)n * log(n), 1));
 			printf("%18lf", t / pow((double)n, 2.2));
 			printf("\n");
-			printf("%lf %lf %lf\n", pow(n, 2), pow(n * log(n), 1), pow((double)n, 2.2));
 			free(v);
 		}
 	}
