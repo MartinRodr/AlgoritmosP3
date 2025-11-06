@@ -25,7 +25,7 @@ una media de 1000 ejecuciones de un bucle. Por otro lado, se han tradato de impe
 documentar las mediciones anómalas.
 
 Los algoritmos fueron ejecutados en un portátil con las siguientes especificaciones:
-    Kernel: x86_64 6.14.0-29-generic #29~24.04.1-Ubuntu
+    Kernel: x86_64 6.14.0-29-generic #29~24.04.1-Ubuntu 
     CPU: AMD Ryzen 7 7735HS @ 16x 8
     GPU: NVIDIA GeForce RTX 4060 Laptop GPU
     RAM: 15592 MB
@@ -44,12 +44,14 @@ Los algoritmos fueron ejecutados en un portátil con las siguientes especificaci
 
 
 
-Tras observar los resultados obtenidos se puede afirmar que a medida que aumenta el umbral
-los tiempos de ejecución disminuyen. 
 En el caso de cuando el vector está inicializado desordenado se observa que el umbral 10 
 obtiene mejores tiempos de ejecución y el umbral 100 en un poco, pero tampoco mucho, más 
 eficaz que el umbral 1 para esta inicialización.
 Cuando el vector está ordenado previamente de menor a mayor se obtienen tiempos de ejecución
-menores a medida que el umbral aumenta.
+menores a medida que el umbral aumenta, obtiniendo mejores tiempos con umbral 100.
 Y en el último caso, cuando está inicializado de mayor a menor ocurre lo mismo que cuando está
-ordenado de menor a mayor, a medida que aumenta el umbral disminuyen los tiempos de ejecución.
+ordenado de menor a mayor, a medida que aumenta el umbral disminuyen los tiempos de ejecución, 
+obteniendo también mejores tiempos con umbral 100.
+
+
+//// Por que
