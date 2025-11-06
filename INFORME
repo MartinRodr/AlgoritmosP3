@@ -4,3 +4,24 @@ Ali Abu-afash Nayef
 Martín Rodríguez Arévalo
 Alejandro Patiño Jaramillo
 
+Buscamos ordenar de menor a mayor un vector de n números enteros implementendo
+el algoritmo de ordenación rápida y a su vez determinar los tiempos de ejecución 
+dependiendo de como esté inicializado el vector y del umbral que se esté utilizando.
+
+El vector se inicializa desordenado, ordenado de menor a mayor y de mayor a menor.
+Después para cada inicialización se emplean primero el umbral 1 y después el umbral 
+10 y 100.
+
+Las tablas presentan al menos cinco valores de progresión geométrica de 2^,
+sus respectivos tiempos de ejecución en microsegundos con sus respectivas cotas con 
+al menos tres cifras significativas.
+
+Para este algoritmo se contrastan los tiempos con una cota subestimada, ajustada y 
+sobrestimada.
+
+Cuando se detecta una medición inferior a la confianza establecida, en este caso de 
+500 microsegundos, se resalta con el simbolo (*) y se obtiene ese tiempo mediante 
+una media de 1000 ejecuciones de un bucle. Por otro lado, se han tradato de impedir y 
+documentar las mediciones anómalas.
+
+Los algoritmos fueron ejecutados en un portátil con las siguientes especificaciones:
