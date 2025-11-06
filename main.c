@@ -188,7 +188,7 @@ double calculo_ajustada(double t, int n, int inicializacion, int umbral) {
 	switch(inicializacion) {
 		case 0:
 			switch(umbral) {
-				case 1: return (t / pow((double)n, 1.08));
+				case 1: return (t / pow((double)n, 1a.08));
 				case 10: return (t / pow((double)n, 1.11));
 				case 100: return (t / pow((double)n, 1.11));
 				default: return 0.0;
