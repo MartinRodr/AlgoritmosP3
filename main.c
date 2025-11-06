@@ -219,7 +219,7 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 		"Algoritmo ascendente",
 		"Algoritmo descendente" };
 	for (umbral = 1; umbral <= 100; umbral *= 10) {
-		printf("Algoritmos %s con umbral %d\n", inic[inicializacion], umbral);
+		printf("%s con umbral %d\n", inic[inicializacion], umbral);
 		printf_cotas(inicializacion, umbral);
 		//printf("%10s%18s%18s%18s%18s\n", 
 			//"n", "t (n)", "t (n) / n^1", "t (n) / n*log(n)", "t (n) / n^1.5");

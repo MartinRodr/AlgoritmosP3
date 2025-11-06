@@ -31,7 +31,7 @@ Los algoritmos fueron ejecutados en un portátil con las siguientes especificaci
     RAM: 15.0 GiB
 
 
-Algoritmos Algoritmo desordenado con umbral 1
+Algoritmo desordenado con umbral 1
          n             t (n)       t (n) / n^1    t (n) / n^1.08     t (n) / n^1.5
 (*)    500         52.394000          0.104788         0.0637373         0.0046863
 (*)   1000        114.779000          0.114779         0.0660484         0.0036296
@@ -43,7 +43,7 @@ Algoritmos Algoritmo desordenado con umbral 1
      64000      10669.000000          0.166703         0.0687780         0.0006590
     128000      22228.000000          0.173656         0.0677819         0.0004854
     256000      46841.000000          0.182973         0.0675658         0.0003616
-Algoritmos Algoritmo desordenado con umbral 10
+Algoritmo desordenado con umbral 10
          n             t (n)       t (n) / n^1    t (n) / n^1.11     t (n) / n^1.5
 (*)    500         43.133000          0.086266         0.0435465         0.0038579
 (*)   1000         94.184000          0.094184         0.0440532         0.0029784
@@ -55,7 +55,7 @@ Algoritmos Algoritmo desordenado con umbral 10
      64000       9537.000000          0.149016         0.0441115         0.0005890
     128000      19847.000000          0.155055         0.0425296         0.0004334
     256000      42065.000000          0.164316         0.0417614         0.0003248
-Algoritmos Algoritmo desordenado con umbral 100
+Algoritmo desordenado con umbral 100
          n             t (n)       t (n) / n^1    t (n) / n^1.11     t (n) / n^1.5
 (*)    500         47.967000          0.095934         0.0484268         0.0042903
 (*)   1000        104.447000          0.104447         0.0488535         0.0033029
@@ -69,7 +69,7 @@ Algoritmos Algoritmo desordenado con umbral 100
     256000      45331.000000          0.177074         0.0450038         0.0003500
 
 
-Algoritmos Algoritmo ascendente con umbral 1
+Algoritmo ascendente con umbral 1
          n             t (n)       t (n) / n^1    t (n) / n^1.04     t (n) / n^1.5
 (*)    500         17.913000          0.035826         0.0279408         0.0016022
 (*)   1000         36.749000          0.036749         0.0278770         0.0011621
@@ -81,7 +81,7 @@ Algoritmos Algoritmo ascendente con umbral 1
      64000       2967.000000          0.046359         0.0297776         0.0001833
     128000       6182.000000          0.048297         0.0301738         0.0001350
     256000      12650.000000          0.049414         0.0300276         0.0000977
-Algoritmos Algoritmo ascendente con umbral 10
+Algoritmo ascendente con umbral 10
          n             t (n)       t (n) / n^1    t (n) / n^1.08     t (n) / n^1.5
 (*)    500          9.108000          0.018216         0.0110799         0.0008146
 (*)   1000         19.424000          0.019424         0.0111773         0.0006142
@@ -93,7 +93,7 @@ Algoritmos Algoritmo ascendente con umbral 10
      64000       1820.000000          0.028438         0.0117327         0.0001124
     128000       3545.000000          0.027695         0.0108101         0.0000774
     256000       7481.000000          0.029223         0.0107910         0.0000578
-Algoritmos Algoritmo ascendente con umbral 100
+Algoritmo ascendente con umbral 100
          n             t (n)       t (n) / n^1    t (n) / n^1.12     t (n) / n^1.5
 (*)    500          4.422000          0.008844         0.0041954         0.0003955
 (*)   1000          9.763000          0.009763         0.0042617         0.0003087
@@ -107,7 +107,7 @@ Algoritmos Algoritmo ascendente con umbral 100
     256000       4940.000000          0.019297         0.0043301         0.0000381
 
 
-Algoritmos Algoritmo descendente con umbral 1
+Algoritmo descendente con umbral 1
          n             t (n)       t (n) / n^1    t (n) / n^1.04     t (n) / n^1.5
 (*)    500         19.294000          0.038588         0.0300949         0.0017257
 (*)   1000         39.669000          0.039669         0.0300920         0.0012544
@@ -119,7 +119,7 @@ Algoritmos Algoritmo descendente con umbral 1
      64000       3123.000000          0.048797         0.0313433         0.0001929
     128000       6523.000000          0.050961         0.0318382         0.0001424
     256000      13209.000000          0.051598         0.0313545         0.0001020
-Algoritmos Algoritmo descendente con umbral 10
+Algoritmo descendente con umbral 10
          n             t (n)       t (n) / n^1    t (n) / n^1.07     t (n) / n^1.5
 (*)    500         10.311000          0.020622         0.0133476         0.0009222
 (*)   1000         22.358000          0.022358         0.0137858         0.0007070
@@ -131,7 +131,7 @@ Algoritmos Algoritmo descendente con umbral 10
      64000       1831.000000          0.028609         0.0131849         0.0001131
     128000       3847.000000          0.030055         0.0131949         0.0000840
     256000       8118.000000          0.031711         0.0132627         0.0000627
-Algoritmos Algoritmo descendente con umbral 100
+Algoritmo descendente con umbral 100
          n             t (n)       t (n) / n^1    t (n) / n^1.11     t (n) / n^1.5
 (*)    500          5.686000          0.011372         0.0057405         0.0005086
 (*)   1000         12.543000          0.012543         0.0058668         0.0003966
@@ -145,16 +145,90 @@ Algoritmos Algoritmo descendente con umbral 100
     256000       5943.000000          0.023215         0.0059001         0.0000459
 
 
+Una cota subestimada para todas las ejecuciones de ordenación rápida es n, mientras que
+una cota sobrestimada es n^1.5. Para cada caso existe una cota ajustada distinta.
+- Desordenado con umbral 1: n^1.08 con una constante 0.0676000
+- Desordenado con umbral 10 y 100: n^1.11 con una constante 0.0427614 y 0.0450038 respectivamente.
+- Ascendentemente con umbral 1: n^1.04 con una constante 0.0300000
+- Ascendentemente con umbral 10: n^1.08 con una constante 0.0109910
+- Ascendentemente con umbral 100: n^1.12 con una constante 0.0043300
+- Descendentemente con umbral 1: n^1.04 con una constante 0.0313500
+- Descendentemente con umbral 10: n^1.07 con una constante 0.0132600
+- Descendentemente con umbral 100: n^1.11 con una constante 0.0059000
+
 
 En el caso de cuando el vector está inicializado desordenado se observa que el umbral 10 
 obtiene mejores tiempos de ejecución y el umbral 100 es un poco, pero tampoco mucho, más
 eficaz que el umbral 1 para esta inicialización.
-Cuando el vector está ordenado previamente de menor a mayor se obtienen tiempos de ejecución
-menores a medida que el umbral aumenta, obtiniendo mejores tiempos con umbral 100.
-Y en el último caso, cuando está inicializado de mayor a menor ocurre lo mismo que cuando está
-ordenado de menor a mayor, a medida que aumenta el umbral disminuyen los tiempos de ejecución, 
-obteniendo también mejores tiempos con umbral 100.
+Esto ocurre porque con umbral 1 es puramente ordenación rápida y no llega a llamar al
+algoritmo de inserción, teniendo que hacer más llamas recursivas. Después con el umbral
+100 se llama antes de lo debido a inserción, teniendo que tratar arreglos más grandes. 
+Por lo tanto el umbral 10 obtiene mejores tiempos ya que inserción trata arreglos más 
+pequeños.
 
+Cuando el vector está ordenado previamente de ascendentemente se obtienen tiempos de 
+ejecución menores a medida que el umbral aumenta, obtiniendo mejores tiempos con umbral 100.
+Y en el último caso, cuando está inicializado de descendentemente ocurre lo mismo que cuando 
+está ordenado de ascendente, a medida que aumenta el umbral disminuyen los tiempos de 
+ejecución, obteniendo también mejores tiempos con umbral 100.
+Esto ocurre porque estos vectores son los peores casos de ordenación rápida, porque generan
+particiones desbalanceadas. Entonces utilizando umbrales altos, como 100, se llama antes
+al algoritmo por inserción, el cual es muy eficiente en estos casos, obteniendo una
+complejidad lineal.
+
+
+Algoritmo Shell: Hibbard
+         n             t (n)  t (n) / n*log(n)    t (n) / n^1.18     t (n) / n^1.3
+(*)    500         31.515000          0.010142         0.0205936          0.009769
+(*)   1000         73.724000          0.010673         0.0212622          0.009281
+(*)   2000        174.597000          0.011485         0.0222240          0.008927
+(*)   4000        388.012000          0.011695         0.0217979          0.008057
+      8000        866.000000          0.012045         0.0214720          0.007303
+     16000       1959.000000          0.012648         0.0214374          0.006709
+     32000       4388.000000          0.013219         0.0211929          0.006103
+     64000      10348.000000          0.014610         0.0220579          0.005846
+    128000      21381.000000          0.014204         0.0201150          0.004905
+    256000      46619.000000          0.014624         0.0193571          0.004344
+    512000     103190.000000          0.015331         0.0189103          0.003905
+Algoritmo Shell: Knuth
+         n             t (n)     t (n) / n^1.1    t (n) / n^1.16     t (n) / n^1.3
+(*)    500         28.855000         0.0309995          0.021351          0.008945
+(*)   1000         63.218000         0.0316841          0.020933          0.007959
+(*)   2000        159.063000         0.0371909          0.023571          0.008133
+(*)   4000        345.864000         0.0377259          0.022936          0.007182
+      8000        766.000000         0.0389789          0.022732          0.006460
+     16000       1668.000000         0.0395972          0.022152          0.005713
+     32000       3748.000000         0.0415083          0.022275          0.005213
+     64000       8506.000000         0.0439468          0.022623          0.004805
+    128000      18144.000000         0.0437323          0.021596          0.004163
+    256000      42126.000000         0.0473681          0.022438          0.003925
+    512000      87884.000000         0.0461013          0.020949          0.003326
+Algoritmo Shell: Sedgewick
+         n             t (n)     t (n) / n^1.1    t (n) / n^1.12     t (n) / n^1.3
+(*)    500         27.448000          0.054896          0.026041         0.0085084
+(*)   1000         61.291000          0.061291          0.026754         0.0077161
+(*)   2000        148.137000          0.074068          0.029752         0.0075740
+(*)   4000        320.402000          0.080100          0.029607         0.0066530
+      8000        716.000000          0.089500          0.030441         0.0060380
+     16000       1538.000000          0.096125          0.030084         0.0052674
+     32000       3269.000000          0.102156          0.029420         0.0045469
+     64000       7895.000000          0.123359          0.032691         0.0044598
+    128000      15123.000000          0.118148          0.028811         0.0034695
+    256000      32359.000000          0.126402          0.028364         0.0030150
+    512000      69821.000000          0.136369          0.028158         0.0026420
+Algoritmo Shell: Ciura
+         n             t (n)         t (n) / n    t (n) / n^1.11 t (n) / n*log^2(n)
+(*)    500         29.892000          0.059784         0.0301785          0.001548
+(*)   1000         68.535000          0.068535         0.0320562          0.001436
+(*)   2000        161.570000          0.080785         0.0350120          0.001398
+(*)   4000        351.869000          0.087967         0.0353260          0.001279
+      8000        780.000000          0.097500         0.0362798          0.001207
+     16000       1699.000000          0.106188         0.0366117          0.001133
+     32000       3672.000000          0.114750         0.0366595          0.001066
+     64000       8951.000000          0.139859         0.0414011          0.001142
+    128000      17151.000000          0.133992         0.0367525          0.000969
+    256000      37266.000000          0.145570         0.0369970          0.000939
+    512000      78540.000000          0.153398         0.0361244          0.000888
 
 Comparando los resultados obtenidos para la inicialización desordenada utilizando este algoritmo 
 y los tiempos obtenidos con la ordenación Shell, cuando el umbral es 1, el tiempo más lento, 
@@ -164,5 +238,3 @@ para umbral 10, los mejores tiempos, son tiempos similares a los incrementos de 
 a los incrementos de Hibbard. Por lo tanto, se observa que para ordenar 256000 números el algoritmo 
 de Shell utilizando incrementos de Sedgewick o incluso Ciura se obtienen tiempos más eficaces que 
 con este algoritmo.
-
-//// Por que
