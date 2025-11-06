@@ -25,7 +25,10 @@ una media de 1000 ejecuciones de un bucle. Por otro lado, se han tradato de impe
 documentar las mediciones anómalas.
 
 Los algoritmos fueron ejecutados en un portátil con las siguientes especificaciones:
-
+    Kernel: x86_64 6.14.0-29-generic #29~24.04.1-Ubuntu
+    CPU: AMD Ryzen 7 7735HS @ 16x 8
+    GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+    RAM: 15592 MB
 
 
 
