@@ -8,7 +8,7 @@ desordenado 1: 1.08
 desordenado 10: 1.11
 desordenado 100: 1.11
 
-descendente 1:
-descendente 10:
-descendente 100:
+descendente 1: 1.04
+descendente 10: 1.07
+descendente 100: 1.11
 
