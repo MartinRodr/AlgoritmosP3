@@ -1,0 +1,14 @@
+ascendente 1: ^1.04
+ascendente 10: ^1.08
+ascendetne 100: ^1.12
+
+desordenado : 1.1
+
+desordenado 1: 1.08
+desordenado 10: 1.11
+desordenado 100: 1.11
+
+descendente 1:
+descendente 10:
+descendente 100:
+

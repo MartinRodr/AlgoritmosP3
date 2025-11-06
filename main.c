@@ -125,6 +125,72 @@ void ord_rapida(int v[], int n, int umbral) {
 	}
 }
 
+/*void printf_cotas(int inicializacion, int umbral) {
+	switch(inicializacion) {
+		case 0:
+			switch(umbral) {
+				case 1: printf("%10s%18s%18s%18s%18s\n", 
+						"n", "t (n)", "t (n) / n^1", "
+						t (n) / n^1.08", "t (n) / n^1.5");
+					break;
+				case 10: printf("%10s%18s%18s%18s%18s\n", 
+						"n", "t (n)", "t (n) / n^1", 
+						"t (n) / n^1.11", "t (n) / n^1.5");
+					break;
+				case 100: printf("%10s%18s%18s%18s%18s\n", 
+						"n", "t (n)", "t (n) / n^1", 
+						"t (n) / n^1.11", "t (n) / n^1.5");
+					break;
+				default: break;
+			}
+		case 1:
+			switch(umbral) {
+				case 1: printf("%10s%18s%18s%18s%18s\n", 
+						"n", "t (n)", "t (n) / n^1", "
+						t (n) / n^1.04", "t (n) / n^1.5");
+					break;
+				case 10: printf("%10s%18s%18s%18s%18s\n", 
+						"n", "t (n)", "t (n) / n^1", 
+						"t (n) / n^1.08", "t (n) / n^1.5");
+					break;
+				case 100: printf("%10s%18s%18s%18s%18s\n", 
+						"n", "t (n)", "t (n) / n^1", 
+						"t (n) / n^1.12", "t (n) / n^1.5");
+					break;
+				default: break;
+			}
+		case 2:
+		default: break;
+	}
+}*/
+
+/*double calculo_cotasAjustada(double t, int n, int inicializacion, int umbral) {
+	switch(inicializacion) {
+		case 0:
+			switch(umbral) {
+				case 1: return (t / pow((double)n, 1.08)); break;
+				case 10: return (t / pow((double)n, 1.11)); break;
+				case 100: return (t / pow((double)n, 1.11)); break;
+				default: break;
+			}
+		case 1:
+			switch(umbral) {
+				case 1: return (t / pow((double)n, 1.04)); break;
+				case 10: return (t / pow((double)n, 1.08)); break;
+				case 100: return (t / pow((double)n, 1.12)); break;
+				default: break;
+			}
+		case 2:
+			switch(umbral) {
+				case 1: return (t / pow((double)n, 1.04)); break;
+				case 10: return (t / pow((double)n, 1.08)); break;
+				case 100: return (t / pow((double)n, 1.12)); break;
+				default: break;
+			}
+		default: break;
+	}
+}*/
+
 void contarTiempo(int k, double confianza, int inicializacion) {
 	int conf, *v, n, umbral, i, j;
 	double ta, tb, t = 0.0, t1, t2;
@@ -132,6 +198,9 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 		"Algoritmo desordenado",
 		"Algoritmo ascendente",
 		"Algoritmo descendente" };
+	//double cotas[] = {0, 0, 0
+					//0, 0, 0,
+					//, 0, 0};
 	for (umbral = 1; umbral <= 100; umbral *= 10) {
 		printf("Algoritmos %s con umbral %d\n", inic[inicializacion], umbral);
 		printf("%10s%18s%18s%18s%18s\n", 
@@ -171,7 +240,7 @@ void contarTiempo(int k, double confianza, int inicializacion) {
 			}
 			printf("%18lf", t);
 			printf("%18lf", t / (double)n);
-			printf("%18.7lf", t / pow((double)n * log(n), 1));
+			printf("%18.7lf", t / pow((double)n, 1.05));
 			printf("%18.7lf", t / pow((double)n, 1.5));
 			printf("\n");
 			free(v);
@@ -202,8 +271,6 @@ void test_ordenacion() {
 
 }
 
-// n * log n
-
 int main(void){
 	int k = 1000;
 	double confianza = 500.00;
@@ -212,8 +279,8 @@ int main(void){
 	// inicializacion = 2 -- Descendente
 	inicializar_semilla();
 	test_ordenacion();
-	contarTiempo(k, confianza, 0);
-	contarTiempo(k, confianza, 1);
+	//contarTiempo(k, confianza, 0);
+	//contarTiempo(k, confianza, 1);
 	contarTiempo(k, confianza, 2);
 	return 0;
 }
