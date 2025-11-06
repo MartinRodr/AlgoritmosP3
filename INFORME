@@ -147,7 +147,7 @@ Algoritmos Algoritmo descendente con umbral 100
 
 
 En el caso de cuando el vector está inicializado desordenado se observa que el umbral 10 
-obtiene mejores tiempos de ejecución y el umbral 100 en un poco, pero tampoco mucho, más 
+obtiene mejores tiempos de ejecución y el umbral 100 es un poco, pero tampoco mucho, más
 eficaz que el umbral 1 para esta inicialización.
 Cuando el vector está ordenado previamente de menor a mayor se obtienen tiempos de ejecución
 menores a medida que el umbral aumenta, obtiniendo mejores tiempos con umbral 100.
